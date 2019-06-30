@@ -23,9 +23,9 @@ task runJerseyCourseService(dependsOn: [classes], type: JavaExec) {
     main = "netflix.karyon.KaryonRunner"
     classpath = sourceSets.main.runtimeClasspath
 
-    //jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
-    //systemProperty 'java.awt.headless', 'true'
-    //systemProperty 'archaius.deployment.environment', 'dev'
+    jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+    systemProperty 'java.awt.headless', 'true'
+    systemProperty 'archaius.deployment.environment', 'dev'
 
     args = ["com.msref.karyonjersey.module.BootstrapInjectionModule"]
 }
