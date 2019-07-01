@@ -22,7 +22,7 @@ public class HealthcheckResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response healthcheck() {    	
+    public Response healthcheck() {
         return Response.status(healthCheckHandler.getStatus()).build();
     }
 }
