@@ -12,7 +12,7 @@ import com.msref.karyonjersey.heath.HealthCheck;
 import com.netflix.governator.annotations.Modules;
 
 @ArchaiusBootstrap
-@KaryonBootstrap(name = "course-service", healthcheck = HealthCheck.class)
+@KaryonBootstrap(name = "topic-service", healthcheck = HealthCheck.class)
 @Modules(include = {
         ShutdownModule.class,
         KaryonWebAdminModule.class,
@@ -25,7 +25,7 @@ public interface BootstrapInjectionModule {
 	class KaryonJerseyRouterModuleImpl extends KaryonJerseyModule {
 		@Override
 		protected void configureServer() {
-            server().port(8888).threadPoolSize(100);
+            server().port(8889).threadPoolSize(100);
 		}
 	}
 }
