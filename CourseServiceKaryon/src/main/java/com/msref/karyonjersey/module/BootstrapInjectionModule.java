@@ -18,7 +18,8 @@ import com.netflix.governator.annotations.Modules;
         KaryonWebAdminModule.class,
         KaryonEurekaModule.class,
         BootstrapInjectionModule.KaryonJerseyRouterModuleImpl.class,
-        KaryonServoModule.class
+        KaryonServoModule.class,
+        MainModule.class
 })
 public interface BootstrapInjectionModule {
 
