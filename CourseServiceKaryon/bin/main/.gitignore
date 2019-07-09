@@ -1,1 +1,6 @@
 /com/
+/course-config-dev.properties
+/course-config-test.properties
+/course-config.properties
+/course-service-dev.properties
+/course-service-test.properties

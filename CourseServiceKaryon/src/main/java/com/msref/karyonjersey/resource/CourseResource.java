@@ -16,6 +16,7 @@ import com.google.inject.Singleton;
 import com.msref.karyonjersey.model.Course;
 import com.msref.karyonjersey.model.Topic;
 import com.msref.karyonjersey.service.CourseService;
+import com.netflix.config.ConfigurationManager;
 
 @Singleton
 @Path("/courses")
@@ -29,14 +30,19 @@ public class CourseResource {
 	  @GET
 	  @Produces(MediaType.APPLICATION_JSON)
 	  public Response getCourses(){
-		  
+		    
+        try {
+        	// Retrieving the topic list by invoking the topic microservice
 	        List<Topic> topicList = courseService.getTopics();
-	        Course course = new Course("Netflix Karyon", topicList);
 	        
-	            try {
-					return Response.ok(mapper.writeValueAsString(course)).build();
-				} catch (IOException e) {
-					return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-				}
+	        // ConfigurationManager.getConfigInstance() will load the properties from course-service.properties file. 
+	        // @KaryonBootstrap(name = "course-service", healthcheck = HealthCheck.class) is how Karyon decides which property file to load
+	        // As course-service is used for name attribute in KaryonBootstrap annotation, course-service.properties file will be loaded.  
+	        Course course = new Course(ConfigurationManager.getConfigInstance().getString("courseName"), topicList);        	
+			
+	        return Response.ok(mapper.writeValueAsString(course)).build();
+		} catch (IOException e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}
 	  }
 }
